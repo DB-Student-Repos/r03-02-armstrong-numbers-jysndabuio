@@ -1,6 +1,6 @@
 pub fn is_armstrong_number(num: u32) -> bool {
     // For single digit => all armstrong number
-    let  num_chars = num.to_string().replace("_", "");
+    let  num_chars = num.to_string();
 
     if num_chars.len() == 1 {
         return true
@@ -19,5 +19,5 @@ fn check(num_chars: &String, num: u32) -> bool {
         return true
     } else {
         return false
-    }
+    }git 
 }
