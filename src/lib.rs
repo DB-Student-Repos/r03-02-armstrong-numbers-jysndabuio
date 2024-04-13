@@ -1,23 +1,19 @@
 pub fn is_armstrong_number(num: u32) -> bool {
     // For single digit => all armstrong number
-    let  num_chars = num.to_string();
-
-    if num_chars.len() == 1 {
-        return true
-    } else {
-        check(&num_chars, num)
+    
+    match num.to_string().len() {
+        1 => return true,
+        _ => check(num),
     }
 }
 
-fn check(num_chars: &String, num: u32) -> bool {
-    let mut armstrong_number: u32 = 0;
-    for x in num_chars.chars(){
-        let digit = x.to_digit(10).unwrap();
-        armstrong_number = armstrong_number.wrapping_add(digit.pow(num_chars.len() as u32));
-    }
-    if num == armstrong_number {
-        return true
-    } else {
-        return false
-    }git 
+fn check(num: u32) -> bool {
+    let num_str = num.to_string();
+    let num_digits = num_str.len() as u32;
+    let armstrong_number = num_str
+        .chars()
+        .map(|x| x.to_digit(10).unwrap().pow(num_digits))
+        .fold(0u32, |acc, x| acc.wrapping_add(x)); 
+        // acc stands for accumulator/holder 
+    num == armstrong_number
 }
